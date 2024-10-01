@@ -1,5 +1,6 @@
-WP_DATA = /home/data/wordpress #define the path to the wordpress data
-DB_DATA = /home/data/mariadb #define the path to the mariadb data
+WP_DATA = /home/sdiabate/data/wordpress #define the path to the wordpress data
+DB_DATA = /home/sdiabate/data/mariadb #define the path to the mariadb data
+COMPOSE = ./srcs/docker-compose.yml
 
 # default target
 all: up
@@ -10,23 +11,23 @@ all: up
 up: build
 	@mkdir -p $(WP_DATA)
 	@mkdir -p $(DB_DATA)
-	docker-compose -f ./docker-compose.yml up 
+	docker compose -f $(COMPOSE) up 
 
 # stop the containers
 down:
-	docker-compose -f ./docker-compose.yml down
+	docker compose -f $(COMPOSE) down
 
 # stop the containers
 stop:
-	docker-compose -f ./docker-compose.yml stop
+	docker compose -f $(COMPOSE) stop
 
 # start the containers
 start:
-	docker-compose -f ./docker-compose.yml start
+	docker compose -f $(COMPOSE) start
 
 # build the containers
 build:
-	docker-compose -f ./docker-compose.yml build
+	docker compose -f $(COMPOSE) build
 
 # clean the containers
 # stop all running containers and remove them.
